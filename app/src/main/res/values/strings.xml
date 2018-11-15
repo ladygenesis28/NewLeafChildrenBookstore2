@@ -5,16 +5,16 @@
     <string name="action_insert_dummy_data">Insert Dummy Data</string>
     <string name="action_delete_all_entries">Delete All Entries</string>
     <string name="empty_view_title_text">It\'s a bit lonely here...</string>
-    <string name="empty_view_subtitle_text">Get started by adding a book</string>
+    <string name="empty_view_subtitle_text">Get started by adding a book!</string>
     <string name="editor_activity_title_new_book">Add a book</string>
     <string name="editor_activity_title_edit_book">Edit a Book</string>
     <string name="category_overview">Category</string>
-    <string name="hint_book_name">book name</string>
-    <string name="hint_book_price">book price</string>
-    <string name="hint_book_quantity">book quantity</string>
-    <string name="hint_supplier_name">supplier name</string>
-    <string name="hint_supplier_phone_number">supplier phone number</string>
-    <string name="editor_insert_book_successful">Book deleted</string>
+    <string name="hint_book_name">Enter book name</string>
+    <string name="hint_book_price">Book price</string>
+    <string name="hint_book_quantity">Book quantity</string>
+    <string name="hint_supplier_name">Enter Supplier name</string>
+    <string name="hint_supplier_phone_number">Supplier phone number</string>
+    <string name="editor_insert_book_successful">Book Added Sucessfully! </string>
     <string name="editor_insert_book_failed">Error with deleting a book</string>
     <string name="editor_update_book_failed">The update has failed</string>
     <string name="editor_update_book_successful">The update was successful</string>
@@ -27,4 +27,6 @@
     <string name="editor_delete_book_failed">Error with deleting a book</string>
     <string name="editor_delete_book_successful">Book deleted</string>
     <string name="unknown_phone_number">Unknown Supplier Phone Number</string>
+    <string name="btn_sale_one_product_sold">Congrats! Your book Is Sold!</string>
+    <string name="btn_sale_sold_out">Book is sold out</string>
 </resources>

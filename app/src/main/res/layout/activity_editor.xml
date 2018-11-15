@@ -17,6 +17,8 @@
 
         <!-- Name field -->
         <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/edit_product_name"
             android:hint="@string/hint_book_name"
             android:inputType="textCapWords"
@@ -24,6 +26,8 @@
 
         <!-- Book price field -->
         <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/edit_book_price"
             android:hint="@string/hint_book_price"
             android:inputType="number|none"
@@ -31,6 +35,8 @@
 
         <!-- Book quantity field -->
         <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/edit_book_quantity"
             android:hint="@string/hint_book_quantity"
             android:inputType="number"
@@ -38,6 +44,8 @@
 
         <!-- Supplier name field -->
         <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/edit_supplier_name"
             android:hint="@string/hint_supplier_name"
             android:inputType="textCapWords"
@@ -45,6 +53,8 @@
 
         <!-- Supplier phone number field -->
         <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/edit_supplier_phone_number"
             android:hint="@string/hint_supplier_phone_number"
             android:inputType="phone|number"

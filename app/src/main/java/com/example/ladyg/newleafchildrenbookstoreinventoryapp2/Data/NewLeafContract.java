@@ -68,7 +68,7 @@ public class NewLeafContract {
          *
          * Type: TEXT
          */
-        public final static String COLUMN_PRODUCT_NAME ="product name";
+        public final static String COLUMN_PRODUCT_NAME ="product_name";
 
         /**
          * Type: TEXT
@@ -83,15 +83,15 @@ public class NewLeafContract {
         /**
          * Type: INTEGER
          */
-        public final static String COLUMN_SUPPLIER_NAME = "Supplier Name";
+        public final static String COLUMN_SUPPLIER_NAME = "supplier_name";
 
         /**
          * Type: TEXT
          */
-        public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "Supplier Phone Number";
+        public final static String COLUMN_SUPPLIER_PHONE_NUMBER = "supplier_phone_number";
 
         /**
-         * Type: TEXT
+         * Type: INTEGER
          */
     }
 

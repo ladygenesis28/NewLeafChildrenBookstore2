@@ -137,7 +137,7 @@ public class NewLeafProvider extends ContentProvider {
             throw new IllegalArgumentException("The book requires valid price tag");
         }
 
-        // If the weight is provided, check that it's greater than or equal to 0 quantity
+        // If the quantity is provided, check that it's greater than or equal to 0 quantity
         Integer quantity = values.getAsInteger(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY);
         if (quantity != null && quantity < 1) {
             throw new IllegalArgumentException("The book requires valid quantity");
@@ -158,7 +158,7 @@ public class NewLeafProvider extends ContentProvider {
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
 
-        // Insert the new pet with the given values
+        // Insert the new book with the given values
         long id = database.insert(NewLeafContract.NewLeafEntry.TABLE_NAME, null, values);
         // If the ID is -1, then the insertion failed. Log an error and return null.
         if (id == -1) {
@@ -166,7 +166,7 @@ public class NewLeafProvider extends ContentProvider {
             return null;
         }
 
-        // Notify all listeners that the data has changed for the pet content URI
+        // Notify all listeners that the data has changed for the book content URI
         getContext().getContentResolver().notifyChange(uri, null);
 
         // Return the new URI with the ID (of the newly inserted row) appended at the end
@@ -213,7 +213,7 @@ public class NewLeafProvider extends ContentProvider {
             throw new IllegalArgumentException("The book requires valid price tag");
         }
 
-        // If the weight is provided, check that it's greater than or equal to 0 quantity
+        // If the quantity is provided, check that it's greater than or equal to 0 quantity
         Integer quantity = values.getAsInteger(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY);
         if (quantity != null && quantity < 1) {
             throw new IllegalArgumentException("The book requires valid quantity");

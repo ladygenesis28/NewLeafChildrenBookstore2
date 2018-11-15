@@ -91,15 +91,15 @@ public class EditorActivity extends AppCompatActivity implements
 
             // Initialize a loader to read the book data from the database
             // and display the current values in the editor
-            getLoaderManager().initLoader(EXISTING_BOOK_LOADER, null, this);
+            getSupportLoaderManager().initLoader(EXISTING_BOOK_LOADER, null, this);
         }
 
         // Find all relevant views that we will need to read user input from
-        mNameEditText = (EditText) findViewById(R.id.edit_product_name);
-        mPriceEditText = (EditText) findViewById(R.id.edit_book_price);
-        mQuantityEditText = (EditText) findViewById(R.id.edit_book_quantity);
-        mSupplierNameEditText = (EditText) findViewById(R.id.edit_supplier_name);
-        mSupplierPhoneNumberEditText = (EditText) findViewById(R.id.edit_supplier_phone_number);
+        mNameEditText = findViewById(R.id.edit_product_name);
+        mPriceEditText = findViewById(R.id.edit_book_price);
+        mQuantityEditText = findViewById(R.id.edit_book_quantity);
+        mSupplierNameEditText = findViewById(R.id.edit_supplier_name);
+        mSupplierPhoneNumberEditText = findViewById(R.id.edit_supplier_phone_number);
 
         // Setup OnTouchListeners on all the input fields, so we can determine if the user
         // has touched or modified them. This will let us know if there are unsaved changes
@@ -122,6 +122,8 @@ public class EditorActivity extends AppCompatActivity implements
         String quantityString = mQuantityEditText.getText().toString().trim();
         String suppliernameString = mSupplierNameEditText.getText().toString().trim();
         String supplierphonenumberString = mSupplierPhoneNumberEditText.getText().toString().trim();
+        int priceInteger = Integer.parseInt(priceString);
+        int quantityInteger = Integer.parseInt(quantityString);
 
         // Check if this is supposed to be a new book
         // and check if all the fields in the editor are blank
@@ -138,8 +140,8 @@ public class EditorActivity extends AppCompatActivity implements
         // and book attributes from the editor are the values.
         ContentValues values = new ContentValues();
         values.put(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME, nameString);
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, priceString);
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantityString);
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, priceInteger);
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantityInteger);
         values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME, suppliernameString);
         values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER, supplierphonenumberString);
         // If the quantity is not provided by the user, don't try to parse the string into an
@@ -319,17 +321,11 @@ public class EditorActivity extends AppCompatActivity implements
 
             // Extract out the value from the Cursor for the given column index
             String name = cursor.getString(nameColumnIndex);
-            int price = cursor.getInt(priceColumnIndex);
-            int quantity = cursor.getInt(quantityColumnIndex);
             String suppliername = cursor.getString(suppliernameColumnIndex);
-            String supplierphonenumber= cursor.getString(supplierphonenumberColumnIndex);
 
             // Update the views on the screen with the values from the database
             mNameEditText.setText(name);
-            mPriceEditText.setText(price);
-            mQuantityEditText.setText(quantity);
             mSupplierNameEditText.setText(suppliername);
-            mSupplierPhoneNumberEditText.setText(supplierphonenumber);
         }
     }
 
@@ -419,7 +415,7 @@ public class EditorActivity extends AppCompatActivity implements
                         Toast.LENGTH_SHORT).show();
             } else {
                 // Otherwise, the delete was successful and we can display a toast.
-                Toast.makeText(this, getString(com.example.ladyg.newleafchildrenbookstoreinventoryapp2.R.string.editor_delete_book_successful),
+                Toast.makeText(this, getString(R.string.editor_delete_book_successful),
                         Toast.LENGTH_SHORT).show();
             }
         }

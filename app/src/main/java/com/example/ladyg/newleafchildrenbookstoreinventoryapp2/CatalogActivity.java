@@ -1,33 +1,36 @@
 package com.example.ladyg.newleafchildrenbookstoreinventoryapp2;
 
+import android.app.LoaderManager;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.ladyg.newleafchildrenbookstoreinventoryapp2.Data.NewLeafContract;
 
 
 public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    /** Identifier for the pet data loader */
+    /**
+     * Identifier for the pet data loader
+     */
     private static final int NEWLEAF_LOADER = 0;
 
 
-    private View recyclerView;
     private CursorAdapter mCursorAdapter;
 
     @Override
@@ -45,15 +48,20 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
             }
         });
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.recyclerview_id);
+        // Find the ListView which will be populated with the book data
+        ListView newleafListView = findViewById(R.id.list);
+
+        // Find and set empty view on the ListView, so that it only shows when the list has 0 items.
+        View emptyView = findViewById(R.id.empty_view);
+        newleafListView.setEmptyView(emptyView);
 
         // Setup an Adapter to create a list item for each row of book data in the Cursor.
         // There is no book data yet (until the loader finishes) so pass in null for the Cursor.
         mCursorAdapter = new NewLeafCursorAdapter(this, null);
-        RecyclerView.setAdapter(mCursorAdapter);
+        newleafListView.setAdapter(mCursorAdapter);
 
         // Setup the item click listener
-        RecyclerView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        newleafListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 // Create new intent to go to {@link EditorActivity}
@@ -86,16 +94,27 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // and book attributes are the values.
         ContentValues values = new ContentValues();
         values.put(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME, "Adventures Into St. Everston");
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, "$14.99");
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY,"5" );
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_PRICE, "1499");
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, "5");
         values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME, "Erica");
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER, "800-000-0000");
+        values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER, "8003127562");
 
         // Insert a new row for bookstore1 into the provider using the ContentResolver.
         // Use the {@link BookEntry#CONTENT_URI} to indicate that we want to insert
         // into the books database table.
         // Receive the new content URI that will allow us to access Bookstore1 data in the future.
         Uri newUri = getContentResolver().insert(NewLeafContract.NewLeafEntry.CONTENT_URI, values);
+
+        // Show a toast message depending on whether or not the insertion was successful.
+        if (newUri == null) {
+            // If the new content URI is null, then there was an error with insertion.
+            Toast.makeText(this, getString(com.example.ladyg.newleafchildrenbookstoreinventoryapp2.R.string.editor_insert_book_failed),
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            // Otherwise, the insertion was successful and we can display a toast.
+            Toast.makeText(this, getString(com.example.ladyg.newleafchildrenbookstoreinventoryapp2.R.string.editor_insert_book_successful),
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -119,7 +138,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         // User clicked on a menu option in the app bar overflow menu
         switch (item.getItemId()) {
             // Respond to a click on the "Insert dummy data" menu option
-            case com.example.ladyg.newleafchildrenbookstoreinventoryapp2.R.id.action_insert_dummy_data:
+            case R.id.action_insert_dummy_data:
                 insertBook();
                 return true;
             // Respond to a click on the "Delete all entries" menu option
@@ -136,7 +155,10 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         String[] projection = {
                 NewLeafContract.NewLeafEntry._ID,
                 NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME,
-                NewLeafContract.NewLeafEntry.COLUMN_PRICE };
+                NewLeafContract.NewLeafEntry.COLUMN_PRICE,
+                NewLeafContract.NewLeafEntry.COLUMN_QUANTITY,
+                NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME,
+                NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER};
 
         // This loader will execute the ContentProvider's query method on a background thread
         return new CursorLoader(this,   // Parent activity context
@@ -149,7 +171,7 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        // Update {@link PetCursorAdapter} with this new cursor containing updated pet data
+        // Update {@link NewLeafCursorAdapter} with this new cursor containing updated book data
         mCursorAdapter.swapCursor(data);
     }
 
@@ -159,9 +181,17 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         mCursorAdapter.swapCursor(null);
     }
 
-    private class FloatingActionButton {
-        public void setOnClickListener(View.OnClickListener onClickListener) {
+    public void bookSale(int id, int quantity) {
+        if (quantity != 0 || quantity > 0) {
+            quantity--;
+            ContentValues values = new ContentValues();
+            values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantity);
+            Uri updatedProductUri = ContentUris.withAppendedId(NewLeafContract.NewLeafEntry.CONTENT_URI, id);
+            int mRowsModified = getContentResolver().update(updatedProductUri, values, null, null);
+            Toast.makeText(this, getString(R.string.btn_sale_one_product_sold), Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, getString(R.string.btn_sale_sold_out), Toast.LENGTH_SHORT).show();
+
         }
     }
 }
-
