@@ -1,0 +1,22 @@
+JvmtiExport can_access_local_variables 0
+JvmtiExport can_hotswap_or_post_breakpoint 0
+JvmtiExport can_post_on_exceptions 0
+# 820 ciObject found
+ciMethod java/lang/Object <init> ()V 4097 1 2735611 0 0
+ciMethod java/nio/Buffer checkIndex (I)I 2049 1 1056 0 0
+ciMethodData java/lang/Object <init> ()V 2 2735611 orig 264 56 173 215 106 0 0 0 0 128 4 122 21 0 0 0 0 32 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2 0 0 217 223 77 1 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethod java/lang/AssertionError <init> ()V 0 0 1 0 -1
+ciMethodData java/nio/Buffer checkIndex (I)I 1 1056 orig 264 56 173 215 106 0 0 0 0 80 91 131 21 0 0 0 0 120 1 0 0 32 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 25 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 8 0 2 0 0 0 80 0 0 0 255 255 255 255 7 0 1 0 0 0 0 0 data 10 0x10007 0x0 0x40 0x320 0x90007 0x320 0x30 0x0 0x100002 0x0 oops 0
+ciMethod com/android/tools/r8/code/BytecodeStream getOffset ()I 0 0 1 0 -1
+ciMethod com/android/tools/r8/code/BytecodeStream nextShort ()I 0 0 1 0 -1
+ciMethod com/android/tools/r8/code/IputBoolean <init> (ILcom/android/tools/r8/code/BytecodeStream;Lcom/android/tools/r8/graph/OffsetToObjectMapping;)V 17 1 1016 0 -1
+ciMethod com/android/tools/r8/code/BaseInstructionFactory create (IILcom/android/tools/r8/code/BytecodeStream;Lcom/android/tools/r8/graph/OffsetToObjectMapping;)Lcom/android/tools/r8/code/Instruction; 1228801 1 281988 0 -1
+ciMethod com/android/tools/r8/graph/OffsetToObjectMapping getMethodMap ()[Lcom/android/tools/r8/graph/DexMethod; 2945 1 34254 0 -1
+ciMethod com/android/tools/r8/graph/OffsetToObjectMapping getFieldMap ()[Lcom/android/tools/r8/graph/DexField; 4753 1 35136 0 -1
+ciMethod com/android/tools/r8/graph/OffsetToObjectMapping getTypeMap ()[Lcom/android/tools/r8/graph/DexType; 105 1 6878 0 -1
+ciMethod com/android/tools/r8/graph/OffsetToObjectMapping getStringMap ()[Lcom/android/tools/r8/graph/DexString; 2041 1 1328 0 -1
+ciMethod java/nio/ShortBuffer get (I)S 0 0 1 0 -1
+ciMethod java/nio/HeapShortBuffer ix (I)I 2049 1 5428 0 0
+ciMethod java/nio/HeapShortBuffer get (I)S 2057 1 5427 0 128
+ciMethodData java/nio/HeapShortBuffer ix (I)I 2 5428 orig 264 56 173 215 106 0 0 0 0 16 76 232 33 0 0 0 0 40 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 161 161 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 1 0 0 0 0 0 0 0 255 255 255 255 0 0 0 0 0 0 0 0 data 0 oops 0
+ciMethodData java/nio/HeapShortBuffer get (I)S 2 5427 orig 264 56 173 215 106 0 0 0 0 80 77 232 33 0 0 0 0 176 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 77 68 79 32 101 120 116 114 97 32 100 97 116 97 32 108 111 99 107 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 145 161 0 0 1 0 0 0 0 0 0 0 0 0 0 0 2 0 0 0 0 0 3 0 2 0 0 0 96 0 0 0 255 255 255 255 5 0 7 0 0 0 0 0 data 12 0x70005 0x1e 0x1af224b0 0x1414 0x0 0x0 0xa0005 0x0 0x1af224b0 0x1432 0x0 0x0 oops 2
