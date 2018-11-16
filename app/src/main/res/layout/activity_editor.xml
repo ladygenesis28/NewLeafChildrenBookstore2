@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,56 +7,158 @@
     android:padding="@dimen/activity_margin"
     tools:context=".EditorActivity">
 
-    <!-- Input fields -->
+
     <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:paddingLeft="4dp"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
-        <!-- Name field -->
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_product_name"
-            android:hint="@string/hint_book_name"
-            android:inputType="textCapWords"
-            style="@style/EditorFieldStyle" />
 
-        <!-- Book price field -->
-        <EditText
+        <TextView
+            style="@style/CategoryStyle"
+            android:text="@string/category_overview"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_book_price"
-            android:hint="@string/hint_book_price"
-            android:inputType="number|none"
-            style="@style/EditorFieldStyle" />
+            android:layout_height="wrap_content"/>
 
-        <!-- Book quantity field -->
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_book_quantity"
-            android:hint="@string/hint_book_quantity"
-            android:inputType="number"
-            style="@style/EditorFieldStyle" />
 
-        <!-- Supplier name field -->
-        <EditText
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/edit_supplier_name"
-            android:hint="@string/hint_supplier_name"
-            android:inputType="textCapWords"
-            style="@style/EditorFieldStyle" />
+            android:layout_weight="2"
+            android:orientation="vertical"
+            android:paddingLeft="4dp">
 
-        <!-- Supplier phone number field -->
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/edit_supplier_phone_number"
-            android:hint="@string/hint_supplier_phone_number"
-            android:inputType="phone|number"
-            style="@style/EditorFieldStyle"/>
+
+            <TextView
+                android:id="@+id/activity_editor__name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/activity_editor_name"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/secondary_text"/>
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_book_name"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_book_name"
+                android:inputType="textCapWords" />
+
+
+            <TextView
+                android:id="@+id/activity_editor_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/activity_editor_price"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/secondary_text"/>
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_book_price"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_book_price"
+                android:inputType="number" />
+
+
+            <TextView
+                android:id="@+id/activity_editor_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/activity_editor_quantity"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/secondary_text"/>
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_book_quantity"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_book_quantity"
+                android:inputType="number" />
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="8dp">
+
+
+                <Button
+                    android:id="@+id/button_decrease"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/activity_editor_marginRight"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:text="@string/activity_editor_buttonn_decrease"
+                    tools:text="-" />
+
+
+                <Button
+                    android:id="@+id/btn_increase"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:focusable="false"
+                    android:text="@string/activity_editor_button_increase"
+                    tools:text="+" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/activity_editor_supplier_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/activity_editor_supplier_name"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/secondary_text"/>
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_supplier_name"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_supplier_name"
+                android:inputType="textCapWords" />
+
+
+            <TextView
+                android:id="@+id/activity_editor_supplier_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:text="@string/activity_editor_supplier_phone_number"
+                android:textAppearance="?android:textAppearanceSmall"
+                android:textColor="@color/secondary_text"/>
+
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_supplier_phone_number"
+                style="@style/EditorFieldStyle"
+                android:hint="@string/hint_supplier_phone_number"
+                android:inputType="number" />
+
+
+            <Button
+                android:id="@+id/activity_editor_action_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:text="@string/activity_editor_action_button"/>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

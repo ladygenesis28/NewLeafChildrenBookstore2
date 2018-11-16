@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
@@ -54,10 +55,24 @@ public class NewLeafCursorAdapter extends CursorAdapter {
      *                correct row.
      */
     @Override
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, final Context context, final Cursor cursor) {
+        Button saleButton = view.findViewById( R.id.button_sale );
+
+        final int position = cursor.getPosition();
+        saleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cursor.moveToPosition(position);
+
+            }
+        });
+
         // Find individual views that we want to modify in the list item layout
-        TextView nameTextView = view.findViewById(R.id.name);
-        TextView summaryTextView = view.findViewById(R.id.summary);
+        TextView nameTextView = view.findViewById(R.id.product_name);
+        TextView priceTextView = view.findViewById(R.id.list_item_title_price);
+        TextView quantityTextView = view.findViewById(R.id.list_item_title_quantity);
+        TextView suppliernameTextView = view.findViewById(R.id.list_item_supplier_name);
+        TextView supplierphonenumberTextView = view.findViewById(R.id.list_item_supplier_phone_number);
 
         // Find the columns of book attributes that we're interested in
         int nameColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME);
@@ -79,12 +94,14 @@ public class NewLeafCursorAdapter extends CursorAdapter {
             bookSupplierphonenumber = context.getString(R.string.unknown_phone_number);
         }
 
-        // Update the TextViews with the attributes for the current pet
+        // Update the TextViews with the attributes for the current book
         nameTextView.setText(bookName);
-        summaryTextView.setText(bookPrice);
-        summaryTextView.setText(bookQuantity);
-        summaryTextView.setText(bookSuppliername);
-        summaryTextView.setText(bookSupplierphonenumber);
+        priceTextView.setText(bookPrice);
+        quantityTextView.setText(bookQuantity);
+        suppliernameTextView.setText(bookSuppliername);
+        supplierphonenumberTextView.setText(bookSupplierphonenumber);
     }
+
 }
+
 

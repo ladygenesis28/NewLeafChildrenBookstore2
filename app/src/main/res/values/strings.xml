@@ -27,6 +27,23 @@
     <string name="editor_delete_book_failed">Error with deleting a book</string>
     <string name="editor_delete_book_successful">Book deleted</string>
     <string name="unknown_phone_number">Unknown Supplier Phone Number</string>
-    <string name="btn_sale_one_product_sold">Congrats! Your book Is Sold!</string>
-    <string name="btn_sale_sold_out">Book is sold out</string>
+    <string name="button_sale_one_product_sold">Congrats! Your book Is Sold!</string>
+    <string name="button_sale_sold_out">Book is sold out</string>
+    <string name="list_item_book_price">Price: </string>
+    <string name="list_item_quantity">Quantity:</string>
+    <string name="list_item_title_supplier_name">Supplier Name: </string>
+    <string name="list_item_supplier_phone_number">Supplier Phone Number:</string>
+    <string name="list_item_button_sale">SALE</string>
+    <string name="editor_activity_error_while_empty_editor">Please fill in all the fields</string>
+    <string name="activity_editor_name">Name:</string>
+    <string name="activity_editor_price">Price:</string>
+    <string name="activity_editor_quantity">Quantity:</string>
+    <string name="activity_editor_buttonn_decrease">-</string>
+    <string name="activity_editor_button_increase">+</string>
+    <string name="activity_editor_supplier_name">Supplier Name:</string>
+    <string name="activity_editor_supplier_phone_number">Supplier Phone Number:</string>
+    <string name="activity_editor_action_button">CALL SUPPLIER</string>
+    <string name="editor_activity_button_quantity_increase">plus one</string>
+    <string name="editor_activity_button_quantity_decrease">minus one</string>
+    <string name="editor_activity_quantity_empty_stock">Book title out of stock</string>
 </resources>

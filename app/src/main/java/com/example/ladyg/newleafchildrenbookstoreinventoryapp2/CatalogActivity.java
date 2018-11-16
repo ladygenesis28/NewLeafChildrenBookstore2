@@ -26,7 +26,7 @@ import com.example.ladyg.newleafchildrenbookstoreinventoryapp2.Data.NewLeafContr
 public class CatalogActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     /**
-     * Identifier for the pet data loader
+     * Identifier for the book data loader
      */
     private static final int NEWLEAF_LOADER = 0;
 
@@ -181,16 +181,18 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
         mCursorAdapter.swapCursor(null);
     }
 
-    public void bookSale(int id, int quantity) {
+    public void buttonSale(int id, int quantity) {
+        //Note to reviewer: Should I delete buttonSale method??
         if (quantity != 0 || quantity > 0) {
             quantity--;
             ContentValues values = new ContentValues();
             values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantity);
             Uri updatedProductUri = ContentUris.withAppendedId(NewLeafContract.NewLeafEntry.CONTENT_URI, id);
             int mRowsModified = getContentResolver().update(updatedProductUri, values, null, null);
-            Toast.makeText(this, getString(R.string.btn_sale_one_product_sold), Toast.LENGTH_SHORT).show();
+            //Note to reviewer: if I were to take mRowsModified out, it will cause an error. So how do I implement it?
+            Toast.makeText(this, getString(R.string.button_sale_one_product_sold), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(this, getString(R.string.btn_sale_sold_out), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.button_sale_sold_out), Toast.LENGTH_SHORT).show();
 
         }
     }
