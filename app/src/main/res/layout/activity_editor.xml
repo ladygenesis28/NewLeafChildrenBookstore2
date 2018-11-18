@@ -100,12 +100,11 @@
                     android:layout_marginRight="@dimen/activity_editor_marginRight"
                     android:layout_weight="1"
                     android:focusable="false"
-                    android:text="@string/activity_editor_buttonn_decrease"
-                    tools:text="-" />
+                    android:text="@string/activity_editor_buttonn_decrease" />
 
 
                 <Button
-                    android:id="@+id/btn_increase"
+                    android:id="@+id/button_increase"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

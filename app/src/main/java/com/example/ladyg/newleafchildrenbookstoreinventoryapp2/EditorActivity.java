@@ -17,13 +17,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ladyg.newleafchildrenbookstoreinventoryapp2.Data.NewLeafContract;
 
 public class EditorActivity extends AppCompatActivity implements
-        LoaderManager.LoaderCallbacks<Cursor> {
+        LoaderManager.LoaderCallbacks<Cursor>, View.OnClickListener {
 
 
     //Identifier for the book data loader
@@ -71,6 +72,28 @@ public class EditorActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(com.example.ladyg.newleafchildrenbookstoreinventoryapp2.R.layout.activity_editor);
+
+        Button buttonIncrease = findViewById(R.id.button_increase);
+        buttonIncrease.setOnClickListener(this);
+
+        Button buttonDecrease = findViewById(R.id.button_decrease);
+        buttonDecrease.setOnClickListener(this);
+
+    }
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_increase:
+                quantityIncrease( mCurrentBookUri );
+                break;
+
+            case R.id.button_decrease:
+                quantityDecrease( mCurrentBookUri );
+                break;
+            default:
+                break;
+        }
+
 
         // Examine the intent that was used to launch this activity,
         // in order to figure out if we're creating a new book or editing an existing one.
@@ -123,12 +146,22 @@ public class EditorActivity extends AppCompatActivity implements
         String quantityString = mQuantityEditText.getText().toString().trim();
         String suppliernameString = mSupplierNameEditText.getText().toString().trim();
         String supplierphonenumberString = mSupplierPhoneNumberEditText.getText().toString().trim();
-        int priceInteger = Integer.parseInt(priceString);
-        int quantityInteger = Integer.parseInt(quantityString);
+        int priceInteger = 0;
+        try {
+            priceInteger = Integer.parseInt(priceString);
+        } catch (NumberFormatException e) {
+            priceString = "";
+        }
+        int quantityInteger = 0;
+        try {
+            quantityInteger = Integer.parseInt(priceString);
+        } catch (NumberFormatException e) {
+            priceString = "";
+        }
 
         // Check if this is supposed to be a new book
         // and check if all the fields in the editor are blank
-        if (mCurrentBookUri == null && TextUtils.isEmpty( nameString )
+        if (TextUtils.isEmpty( nameString )
                 || TextUtils.isEmpty( priceString )
                 || TextUtils.isEmpty( quantityString )
                 || TextUtils.isEmpty( suppliernameString )
@@ -147,11 +180,6 @@ public class EditorActivity extends AppCompatActivity implements
         values.put(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER, supplierphonenumberString);
         // If the quantity is not provided by the user, don't try to parse the string into an
         // integer value. Use 0 by default.
-        int quantity = 1;
-        if (!TextUtils.isEmpty(quantityString)) {
-            quantity = Integer.parseInt(quantityString);
-        }
-        values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantity);
 
         // Determine if this is a new or existing book by checking if mCurrentBookUri is null or not
         if (mCurrentBookUri == null) {
@@ -431,41 +459,23 @@ public class EditorActivity extends AppCompatActivity implements
 
         // Close the activity
         finish();
-    }
 
-    private View.OnClickListener onClickListenerIncrease = new View.OnClickListener() {
-        //Note to reviewer: How do I use onClickListenerIncrease...so it won't be grey out?
-        @Override
-        public void onClick(View v) {
-            quantityIncrease( mCurrentBookUri );
         }
-    };
 
 
-    public void quantityIncrease(Uri bookProductUri) {
-        quantity++;
+    public void quantityIncrease(Uri mCurrentBookUri) {
         ContentValues values = new ContentValues();
         values.put( NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantity );
-        getContentResolver().update( bookProductUri, values, null, null );
+        getContentResolver().update( mCurrentBookUri, values, null, null );
         Toast.makeText( this, getString( R.string.editor_activity_button_quantity_increase ), Toast.LENGTH_SHORT ).show();
     }
 
 
-    private View.OnClickListener onClickListenerDecrease = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            //Note to reviewer: Again, same here
-            quantityDecrease( mCurrentBookUri );
-        }
-    };
-
-
-    public void quantityDecrease(Uri bookProductUri) {
+    public void quantityDecrease(Uri mCurrentBookUri) {
         if (quantity != 0 || quantity > 0) {
-            quantity--;
             ContentValues values = new ContentValues();
             values.put( NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantity );
-            getContentResolver().update( bookProductUri, values, null, null );
+            getContentResolver().update( mCurrentBookUri, values, null, null );
             Toast.makeText( this, getString( R.string.editor_activity_button_quantity_decrease ), Toast.LENGTH_SHORT ).show();
         } else {
             Toast.makeText( this, getString( R.string.editor_activity_quantity_empty_stock ), Toast.LENGTH_SHORT ).show();
