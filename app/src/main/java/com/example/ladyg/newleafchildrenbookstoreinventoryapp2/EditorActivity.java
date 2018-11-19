@@ -80,15 +80,16 @@ public class EditorActivity extends AppCompatActivity implements
         buttonDecrease.setOnClickListener(this);
 
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.button_increase:
-                quantityIncrease( mCurrentBookUri );
+                quantityIncrease(mCurrentBookUri);
                 break;
 
             case R.id.button_decrease:
-                quantityDecrease( mCurrentBookUri );
+                quantityDecrease(mCurrentBookUri);
                 break;
             default:
                 break;
@@ -161,12 +162,12 @@ public class EditorActivity extends AppCompatActivity implements
 
         // Check if this is supposed to be a new book
         // and check if all the fields in the editor are blank
-        if (TextUtils.isEmpty( nameString )
-                || TextUtils.isEmpty( priceString )
-                || TextUtils.isEmpty( quantityString )
-                || TextUtils.isEmpty( suppliernameString )
-                || TextUtils.isEmpty( supplierphonenumberString )) {
-            Toast.makeText( this, getString( R.string.editor_activity_error_while_empty_editor ), Toast.LENGTH_SHORT).show();
+        if (mCurrentBookUri == null && TextUtils.isEmpty(nameString)
+                || TextUtils.isEmpty(priceString)
+                || TextUtils.isEmpty(quantityString)
+                || TextUtils.isEmpty(suppliernameString)
+                || TextUtils.isEmpty(supplierphonenumberString)) {
+            Toast.makeText(this, getString(R.string.editor_activity_error_while_empty_editor), Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -349,19 +350,19 @@ public class EditorActivity extends AppCompatActivity implements
             int supplierphonenumberColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
 
             // Extract out the value from the Cursor for the given column index
-            String name = cursor.getString( nameColumnIndex );
-            int price = cursor.getInt( priceColumnIndex );
-            int quantity = cursor.getInt( quantityColumnIndex );
-            String suppliername = cursor.getString( suppliernameColumnIndex );
-            String supplierphonenumber = cursor.getString( supplierphonenumberColumnIndex );
+            String name = cursor.getString(nameColumnIndex);
+            int price = cursor.getInt(priceColumnIndex);
+            int quantity = cursor.getInt(quantityColumnIndex);
+            String suppliername = cursor.getString(suppliernameColumnIndex);
+            String supplierphonenumber = cursor.getString(supplierphonenumberColumnIndex);
 
 
             // Update the views on the screen with the values from the database
             mNameEditText.setText(name);
-            mPriceEditText.setText( Integer.toString( price ) );
-            mQuantityEditText.setText( Integer.toString( quantity));
+            mPriceEditText.setText(Integer.toString(price));
+            mQuantityEditText.setText(Integer.toString(quantity));
             mSupplierNameEditText.setText(suppliername);
-            mSupplierPhoneNumberEditText.setText( supplierphonenumber );
+            mSupplierPhoneNumberEditText.setText(supplierphonenumber);
 
         }
     }
@@ -460,25 +461,32 @@ public class EditorActivity extends AppCompatActivity implements
         // Close the activity
         finish();
 
-        }
-
+    }
 
     public void quantityIncrease(Uri mCurrentBookUri) {
+
+    }
+
+    public void quantityIncrease(View view) {
+        quantity = quantity+1;
         ContentValues values = new ContentValues();
         values.put( NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantity );
         getContentResolver().update( mCurrentBookUri, values, null, null );
         Toast.makeText( this, getString( R.string.editor_activity_button_quantity_increase ), Toast.LENGTH_SHORT ).show();
     }
-
-
     public void quantityDecrease(Uri mCurrentBookUri) {
+
+        }
+
+        public void quantityDecrease(View view) {
+        quantity = quantity-1;
         if (quantity != 0 || quantity > 0) {
             ContentValues values = new ContentValues();
-            values.put( NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantity );
-            getContentResolver().update( mCurrentBookUri, values, null, null );
-            Toast.makeText( this, getString( R.string.editor_activity_button_quantity_decrease ), Toast.LENGTH_SHORT ).show();
+            values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, quantity);
+            getContentResolver().update(mCurrentBookUri, values, null, null);
+            Toast.makeText(this, getString(R.string.editor_activity_button_quantity_decrease), Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText( this, getString( R.string.editor_activity_quantity_empty_stock ), Toast.LENGTH_SHORT ).show();
+            Toast.makeText(this, getString(R.string.editor_activity_quantity_empty_stock), Toast.LENGTH_SHORT).show();
         }
     }
 }
