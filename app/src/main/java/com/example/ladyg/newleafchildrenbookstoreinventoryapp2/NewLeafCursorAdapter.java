@@ -18,7 +18,6 @@ import com.example.ladyg.newleafchildrenbookstoreinventoryapp2.Data.NewLeafContr
  * how to create list items for each row of book data in the {@link Cursor}.
  */
 public class NewLeafCursorAdapter extends CursorAdapter {
-
     /**
      * Constructs a new {@link NewLeafCursorAdapter}.
      *
@@ -52,20 +51,12 @@ public class NewLeafCursorAdapter extends CursorAdapter {
      * @param view    Existing view, returned earlier by newView() method
      * @param context app context
      * @param cursor  The cursor from which to get the data. The cursor is already moved to the
-     *                correct row.
+     * correct row.
      */
+    private int mQuantity;
+
     @Override
     public void bindView(View view, final Context context, final Cursor cursor) {
-        Button saleButton = view.findViewById( R.id.button_sale );
-
-        final int position = cursor.getPosition();
-        saleButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cursor.moveToPosition(position);
-
-            }
-        });
 
         // Find individual views that we want to modify in the list item layout
         TextView nameTextView = view.findViewById(R.id.product_name);
@@ -82,26 +73,34 @@ public class NewLeafCursorAdapter extends CursorAdapter {
         int supplierphonenumberColumnIndex = cursor.getColumnIndex(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
 
         // Read the book attributes from the Cursor for the current book
-        String bookName = cursor.getString(nameColumnIndex);
-        String bookPrice = cursor.getString(priceColumnIndex);
-        String bookQuantity = cursor.getString(quantityColumnIndex);
-        String bookSuppliername = cursor.getString(suppliernameColumnIndex);
-        String bookSupplierphonenumber= cursor.getString(supplierphonenumberColumnIndex);
+        String name = cursor.getString(nameColumnIndex);
+        String price = cursor.getString(priceColumnIndex);
+        String quantity = cursor.getString(quantityColumnIndex);
+        String suppliername = cursor.getString(suppliernameColumnIndex);
+        String supplierphonenumber = cursor.getString(supplierphonenumberColumnIndex);
 
         // If the supplier phone number is empty string or null, then use some default text
         // that says "Unknown phone number of the supplier", so the TextView isn't blank.
-        if (TextUtils.isEmpty(bookSupplierphonenumber)) {
-            bookSupplierphonenumber = context.getString(R.string.unknown_phone_number);
+        if (TextUtils.isEmpty(supplierphonenumber)) {
+            supplierphonenumber = context.getString(R.string.unknown_phone_number);
         }
 
+
         // Update the TextViews with the attributes for the current book
-        nameTextView.setText(bookName);
-        priceTextView.setText(bookPrice);
-        quantityTextView.setText(bookQuantity);
-        suppliernameTextView.setText(bookSuppliername);
-        supplierphonenumberTextView.setText(bookSupplierphonenumber);
+        nameTextView.setText(name);
+        priceTextView.setText(price);
+        quantityTextView.setText(quantity);
+        suppliernameTextView.setText(suppliername);
+        supplierphonenumberTextView.setText(supplierphonenumber);
+
+        Button buttonSale = view.findViewById(R.id.button_sale);
+        buttonSale.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (mQuantity > 0)
+                    mQuantity = mQuantity - 1;
+            }
+        });
     }
-
 }
-
-

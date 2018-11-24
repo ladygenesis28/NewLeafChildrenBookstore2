@@ -26,11 +26,10 @@ public class NewLeafDbHelper extends SQLiteOpenHelper {
         String SQL_CREATE_BOOKS_TABLE = "CREATE TABLE " + NewLeafEntry.TABLE_NAME + "("
                 + NewLeafEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + NewLeafEntry.COLUMN_PRODUCT_NAME + " TEXT NOT NULL, "
-                + NewLeafEntry.COLUMN_PRICE + " INTEGER NOT NULL DEFAULT 0, "
+                + NewLeafEntry.COLUMN_PRICE + " INTEGER DEFAULT 0, "
                 + NewLeafEntry.COLUMN_QUANTITY + " INTEGER NOT NULL DEFAULT 0, "
                 + NewLeafEntry.COLUMN_SUPPLIER_NAME + " TEXT NOT NULL,"
-                + NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER + " TEXT NOT NULL);";
-
+                + NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER + " TEXT NOT NULL DEFAULT 0);";
 
         // Execute the SQL statement
         db.execSQL(SQL_CREATE_BOOKS_TABLE);

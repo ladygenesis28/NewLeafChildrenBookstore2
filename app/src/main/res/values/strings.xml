@@ -43,7 +43,12 @@
     <string name="activity_editor_supplier_name">Supplier Name:</string>
     <string name="activity_editor_supplier_phone_number">Supplier Phone Number:</string>
     <string name="activity_editor_action_button">CALL SUPPLIER</string>
-    <string name="editor_activity_button_quantity_increase">plus one</string>
-    <string name="editor_activity_button_quantity_decrease">minus one</string>
+    <string name="editor_activity_button_quantity_increase">Only maximum of 15 books </string>
     <string name="editor_activity_quantity_empty_stock">Book title out of stock</string>
+    <string name="invalid_or_empty_number">Incorrect phone number</string>
+    <string name="price_not_entered">Price not entered correctly</string>
+    <string name="quantity_not_entered">quantity not entered correctly</string>
+    <string name="supplier_name_not_entered">Supplier name not entered correctly</string>
+    <string name="supplier_phone_number_not_entered">Supplier phone number not entered correctly</string>
+    <string name="hint_value_to_add">Ex: 299 (for 2.99) </string>
 </resources>

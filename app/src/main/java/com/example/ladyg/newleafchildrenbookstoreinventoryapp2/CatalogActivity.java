@@ -179,6 +179,5 @@ public class CatalogActivity extends AppCompatActivity implements LoaderManager.
     public void onLoaderReset(Loader<Cursor> loader) {
         // Callback called when the data needs to be deleted
         mCursorAdapter.swapCursor(null);
-
     }
 }

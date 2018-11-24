@@ -133,13 +133,13 @@ public class NewLeafProvider extends ContentProvider {
 
         // If the price is provided, check that it's greater than or equal to 1 dollar
         Integer price = values.getAsInteger(NewLeafContract.NewLeafEntry.COLUMN_PRICE);
-        if (price != null && price < 1) {
+        if (price != null && price < 0) {
             throw new IllegalArgumentException("The book requires valid price tag");
         }
 
         // If the quantity is provided, check that it's greater than or equal to 0 quantity
         Integer quantity = values.getAsInteger(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY);
-        if (quantity != null && quantity < 1) {
+        if (quantity != null && quantity < 0) {
             throw new IllegalArgumentException("The book requires valid quantity");
         }
 
@@ -149,11 +149,12 @@ public class NewLeafProvider extends ContentProvider {
             throw new IllegalArgumentException("Requires a supplier name");
         }
 
-        // Check that the name is not null
+        // Check that the phone number is not null
         String supplierphonenumber = values.getAsString(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
         if (supplierphonenumber == null) {
-            throw new IllegalArgumentException("Requires a supplier phone number");
-        }
+           throw new IllegalArgumentException("Requires a supplier phone number");
+
+       }
 
         // Get writeable database
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
@@ -209,13 +210,13 @@ public class NewLeafProvider extends ContentProvider {
 
         // If the price is provided, check that it's greater than or equal to 1 dollar
         Integer price = values.getAsInteger(NewLeafContract.NewLeafEntry.COLUMN_PRICE);
-        if (price != null && price < 1) {
+        if (price != null && price < 0) {
             throw new IllegalArgumentException("The book requires valid price tag");
         }
 
         // If the quantity is provided, check that it's greater than or equal to 0 quantity
         Integer quantity = values.getAsInteger(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY);
-        if (quantity != null && quantity < 1) {
+        if (quantity != null && quantity < 0) {
             throw new IllegalArgumentException("The book requires valid quantity");
         }
 
@@ -298,5 +299,3 @@ public class NewLeafProvider extends ContentProvider {
         }
     }
 }
-
-
