@@ -199,38 +199,7 @@ public class NewLeafProvider extends ContentProvider {
      * Return the number of rows that were successfully updated.
      */
     private int updateBook(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        // If the {@link BookEntry#COLUMN_PRODUCT_NAME} key is present,
-        // check that the name value is not null.
-        if (values.containsKey(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME)) {
-            String name = values.getAsString(NewLeafContract.NewLeafEntry.COLUMN_PRODUCT_NAME);
-            if (name == null) {
-                throw new IllegalArgumentException("The book requires a name");
-            }
-        }
 
-        // If the price is provided, check that it's greater than or equal to 1 dollar
-        Integer price = values.getAsInteger(NewLeafContract.NewLeafEntry.COLUMN_PRICE);
-        if (price != null && price < 0) {
-            throw new IllegalArgumentException("The book requires valid price tag");
-        }
-
-        // If the quantity is provided, check that it's greater than or equal to 0 quantity
-        Integer quantity = values.getAsInteger(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY);
-        if (quantity != null && quantity < 0) {
-            throw new IllegalArgumentException("The book requires valid quantity");
-        }
-
-        // Check that the name is not null
-        String suppliername = values.getAsString(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_NAME);
-        if (suppliername == null) {
-            throw new IllegalArgumentException("Requires a supplier name");
-        }
-
-        // Check that the name is not null
-        String supplierphonenumber = values.getAsString(NewLeafContract.NewLeafEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
-        if (supplierphonenumber == null) {
-            throw new IllegalArgumentException("Requires a supplier phone number");
-        }
         // If there are no values to update, then don't try to update the database
         if (values.size() == 0) {
             return 0;

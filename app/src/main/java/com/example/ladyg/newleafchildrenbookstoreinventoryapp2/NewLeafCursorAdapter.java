@@ -1,7 +1,10 @@
 package com.example.ladyg.newleafchildrenbookstoreinventoryapp2;
 
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,13 +97,24 @@ public class NewLeafCursorAdapter extends CursorAdapter {
         supplierphonenumberTextView.setText(supplierphonenumber);
 
         Button buttonSale = view.findViewById(R.id.button_sale);
+        mQuantity = Integer.parseInt(quantity);
         buttonSale.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if (mQuantity > 0)
-                    mQuantity = mQuantity - 1;
-            }
-        });
+                //Get the product ID
+                    final int idColumnIndex = cursor.getInt(cursor.getColumnIndex(NewLeafContract.NewLeafEntry._ID));
+                    //Must validate negative values
+                    if (mQuantity > 0)
+                        mQuantity = mQuantity - 1;
+                    //Must get the Uri of the product
+                    Uri currentItemUri = ContentUris.withAppendedId(NewLeafContract.NewLeafEntry.CONTENT_URI, idColumnIndex);
+                    ContentValues values = new ContentValues();
+                    values.put(NewLeafContract.NewLeafEntry.COLUMN_QUANTITY, mQuantity);
+                    //this is to update
+                    context.getContentResolver().update(currentItemUri, values, null, null);
+                }
+            });
     }
 }
+

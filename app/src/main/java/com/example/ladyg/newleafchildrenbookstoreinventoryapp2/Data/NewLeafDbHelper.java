@@ -11,6 +11,7 @@ public class NewLeafDbHelper extends SQLiteOpenHelper {
 
     //Database version. If I change the database schema, I must increment the database version.
     private static final int DATABASE_VERSION = 1;
+    private String BOOKS_TABLE;
 
     public NewLeafDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -36,8 +37,12 @@ public class NewLeafDbHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // The database is still at version 1, so there's nothing to do be done here.
-        // I know unused method are not allowed but since its on rubric, i figure I'll leave it alone
+        // This onUpgrade is a method where its handle db version changes. 
+        // For example: when an app is submit at google play at db version =1
+        //then adds some new features which needs database change, upgrade at db version = 2. 
+        db.execSQL(BOOKS_TABLE);
+        //Create tables again
+        onCreate(db);
 
     }
 }
